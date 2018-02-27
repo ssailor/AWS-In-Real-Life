@@ -1,0 +1,45 @@
+Custom Bootstrapped Deployments
+
+Scenario : You work for a small tech start up and you are looking to host your web page in AWS. You have a few developers working on your website and they are using a build system to compile and publish code packages to an S3 bucket. Right now your company is in the beginning stages of its movement into AWS. You have been tasked with creating an infrastructure that will be fault tolerant, durable and cost-effective along with providing your company the ability to easily roll out new deployments without downtime to your site.
+
+Goal : Create a simple web page with infrastructure that is fault tolerant, self healing and will permit developers to easily deploy code packages from a highly durable and fault tolerant centralized storage.
+
+Required Technologies
+
+- AWS
+    - S3
+    - EC2
+        - Instance - Linux
+        - Auto-scaling
+            - Life Cycle Hooks
+        - Launch Configuration
+        - Load Balancer
+        - Instance UserData
+    - VPC
+    - Command Line Interface (CLI)
+    - IAM
+- Apache Web Server (httpd)
+
+Steps
+
+- [ ] Create a VPC using the VPC Wizard ( VPC with Single Public Subnet )
+    - [ ] Create a Second Subnet and give route to IGW (2 Subnets in different AZ required for ALB)
+- [ ] Create a security group for the ALB
+    - [ ] Allow all traffic on port 80
+- Create a security group for the instances
+    - [ ] Allow SSH only to my IP
+    - [ ] Allow HTTP only for ALB SG
+- [ ] Create a S3 bucket that will be used to host the Code Packages we will be deploying
+    - [ ] Upload a simple code package to S3
+- [ ] Create a custom role in IAM that will be used by the EC2 Instance to provide access to the code packages S3 bucket only
+    - [ ] Add another policy for completing life cycle hooks
+- [ ] Create an Auto Scaling Group
+    - [ ] Create Lifecycle hook for on Launch
+- [ ] Create a launch configuration to be used with the Auto Scaling group to create instances
+    - [ ] Provide the custom UserData Script for the EC2 Instance
+- [ ] Create an Application Load Balancer
+    - [ ] Register the Auto Scaling group to the load balancer
+- [ ] Scale the Auto Scaling group to 2 instances
+- [ ] Modify and reload code package to S3
+- [ ] Deploy new code packages without interruption (Rolling Update)
+- [ ] Delete all resources (Some resources used are not free tier eligible)
