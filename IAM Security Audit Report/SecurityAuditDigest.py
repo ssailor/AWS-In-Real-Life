@@ -27,28 +27,28 @@ threshold_cell_violation = '<td bgcolor="#ff3232">Violation</td>'
 check_mfa = os.environ['check_mfa']
 
 # Low threshold for Inactive users check
-inactive_user_low = os.environ['inactive_user_low']
+inactive_user_low = int(os.environ['inactive_user_low'])
 
 # High threshold for inactive users check
-inactive_user_high = os.environ['inactive_user_high']
+inactive_user_high = int(os.environ['inactive_user_high'])
 
 # Low threshold for password age check
-password_age_low = os.environ['password_age_low']
+password_age_low = int(os.environ['password_age_low'])
 
 # High threshold for password age check
-password_age_high = os.environ['password_age_high']
+password_age_high = int(os.environ['password_age_high'])
 
 # Low threshold for inactive key check
-inactive_key_low = os.environ['inactive_key_low']
+inactive_key_low = int(os.environ['inactive_key_low'])
 
 # High threshold for inactive key check
-inactive_key_high = os.environ['inactive_key_high']
+inactive_key_high = int(os.environ['inactive_key_high'])
 
 # Low threshold for key age check
-key_age_low = os.environ['key_age_low']
+key_age_low = int(os.environ['key_age_low'])
 
 # High threshold for key age check
-key_age_high = os.environ['key_age_high']
+key_age_high = int(os.environ['key_age_high'])
 
 # Model objects to parse file into 
 class Password(object):
@@ -255,11 +255,11 @@ class Rules(object):
     # Rule to check if users have MFA enabled on their accounts
     def generate_mfa_enabled_rows(self):
         
-        # Check if flag is set to run this check, if not then table will be empty
-        if check_mfa == True:
-            
-            temp_list =  []
+        temp_list =  []
 
+        # Check if flag is set to run this check, if not then table will be empty
+        if check_mfa == 'True':
+            
             # Loop through each user and run their account agaisnt the thresholds. Generate a HTML row as output
             for user in self.Users:
                 
@@ -283,7 +283,7 @@ class Rules(object):
                 '''
 
                 # If user has display_actionable_only set to true then only write warning and violation records
-                if display_actionable_only == True and status != 'good' or display_actionable_only == False :
+                if display_actionable_only == 'True' and status != 'good' or display_actionable_only == 'False' :
                     # Add row to list 
                     temp_list.append(temp)
 
@@ -336,7 +336,7 @@ class Rules(object):
             </tr>'''
 
             # If user has display_actionable_only set to true then only write warning and violation records
-            if display_actionable_only == True and status != 'good' or display_actionable_only == False :
+            if display_actionable_only == 'True' and status != 'good' or display_actionable_only == 'False' :
                 # Add row to list 
                 temp_list.append(temp)
 
@@ -389,7 +389,7 @@ class Rules(object):
             </tr>'''
 
             # If user has display_actionable_only set to true then only write warning and violation records
-            if display_actionable_only == True and status != 'good' or display_actionable_only == False :
+            if display_actionable_only == 'True' and status != 'good' or display_actionable_only == 'False' :
                 # Add row to list 
                 temp_list.append(temp)
 
@@ -445,7 +445,7 @@ class Rules(object):
                 </tr>'''
 
                 # If user has display_actionable_only set to true then only write warning and violation records
-                if display_actionable_only == True and status != 'good' or display_actionable_only == False :
+                if display_actionable_only == 'True' and status != 'good' or display_actionable_only == 'False' :
                     # Add row to list 
                     temp_list.append(temp)
 
@@ -502,7 +502,7 @@ class Rules(object):
                 </tr>'''
 
                 # If user has display_actionable_only set to true then only write warning and violation records
-                if display_actionable_only == True and status != 'good' or display_actionable_only == False :
+                if display_actionable_only == 'True' and status != 'good' or display_actionable_only == 'False' :
                     # Add row to list 
                     temp_list.append(temp)
 
@@ -534,7 +534,7 @@ class Email(object):
         
         # Populate and add the Rules Threshold content to the template data
         # Check if we are checking for MFA and write proper content to the theshold table
-        if check_mfa == True:
+        if check_mfa == 'True':
             html_email_template_data['MFAGood'] = "True"
             html_email_template_data['MFAViolation'] = "False"
         else:

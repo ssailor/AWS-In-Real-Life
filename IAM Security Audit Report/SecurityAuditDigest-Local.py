@@ -8,7 +8,7 @@ import json
 import time
 
 # Flag to only write warning and violation records, ignore writing good records
-display_actionable_only = os.environ['display_actionable_only']
+display_actionable_only = None
 
 # HTML Table cells with coloring set depending on status
 threshold_cell_good = '<td bgcolor="#4CA64C">Good</td>'
@@ -24,31 +24,31 @@ threshold_cell_violation = '<td bgcolor="#ff3232">Violation</td>'
 # Violation : Value > high_threshold 
 
 # Flag to run the rule that checks Active MFA on accounts
-check_mfa = os.environ['check_mfa']
+check_mfa = None
 
 # Low threshold for Inactive users check
-inactive_user_low = os.environ['inactive_user_low']
+inactive_user_low = None
 
 # High threshold for inactive users check
-inactive_user_high = os.environ['inactive_user_high']
+inactive_user_high = None
 
 # Low threshold for password age check
-password_age_low = os.environ['password_age_low']
+password_age_low = None
 
 # High threshold for password age check
-password_age_high = os.environ['password_age_high']
+password_age_high = None
 
 # Low threshold for inactive key check
-inactive_key_low = os.environ['inactive_key_low']
+inactive_key_low = None
 
 # High threshold for inactive key check
-inactive_key_high = os.environ['inactive_key_high']
+inactive_key_high = None
 
 # Low threshold for key age check
-key_age_low = os.environ['key_age_low']
+key_age_low = None
 
 # High threshold for key age check
-key_age_high = os.environ['key_age_high']
+key_age_high = None
 
 # Model objects to parse file into 
 class Password(object):
@@ -562,9 +562,9 @@ class Email(object):
     # Send data for the report generated from the program to the HTML Template, then SES will email out to desired recipents
     def send_templated_email_report(self,session,template_data):
         
-        recipent_email_address=[os.environ['recipent_email_address']]
-        ses_source_email = os.environ['ses_source_email']
-        ses_template_name = os.environ['ses_template_name']
+        recipent_email_address=None
+        ses_source_email = None
+        ses_template_name = None
         
         # Create boto client for SES
         client = session.client(service_name='ses')
