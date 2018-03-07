@@ -1,0 +1,88 @@
+Scenario : You are a developer at AIRL Inc. and your company has recently undergone a 3rd party security audit of your AWS account. When your security officer got the results of the audit they were shocked at how many security issues involving IAM users came up. After looking through the audit report you notice that there were a few users flagged as inactive who still had access, however you know that they no longer work at your company. You also notice most IAM users do not have MFA enabled for their login and of the users that have keys almost no one has rotated them in a reasonable amount of time. Your security officer has asked you to come up with a solution to this problem.
+ 
+Goal: Use the IAM credentials report with lambda to perform a security audit of an AWS environment and email a security office a report of standing issues.
+
+Required Technologies
+
+	* AWS
+		* IAM
+			* Credentials Report
+			* Custom Policies
+			* Custom Roles
+		* Lambda
+		* Command Line Interface (CLI)
+		* Cloudwatch
+			* Logs
+			* Events
+		* Simple Email Service (SES)
+		* Boto3 (Python SDK for AWS)
+	* Python 3
+
+
+Steps
+
+	1. [ ]Download resources from github repo - https://github.com/ssailor/AWS-In-Real-Life 
+	2. [ ]Download and review the IAM credentials report in the console
+	3. [ ]Verify an email account in SES that we will use as the "sender" email address
+		1. [ ]Send a test email to the verified email address
+	4. [ ]Review the provided HTML Email template AIRL-SecurityReport-EmailTemplate.html
+	5. [ ]Upload HTML Template to SES using the provided utility SES HTML Template Manager
+	6. [ ]Create custom IAM policies
+		1. [ ]Provide permission to get password policy info along with generate/get credentials report
+		2. [ ]Provide permission for SES to Send Templated Email
+	7. [ ]Create am IAM role for our lambda function
+		1. [ ]Attach IAM custom policy
+		2. [ ]Attach SES custom policy
+		3. [ ]Attach AWS Managed policy AWSLambdaBasicExecutionRole
+	8. [ ]Review lambda python program SecurityAuditDigest.py
+	9. [ ]Create lambda function and copy SecurityAuditDigest code into lambda
+	10. [ ]Create environment variables in lambda
+	11. [ ]Create Cloud Watch event trigger
+		1. [ ]Create cron trigger
+	12. [ ]Test Lambda / View report
+
+
+Lambda Environment Variables
+# Flag to only write warning and violation records, ignore writing good records
+display_actionable_only : Boolean
+
+# Flag to run the rule that checks Active MFA on accounts
+check_mfa : Boolean
+
+# Low threshold in days for Inactive users check
+inactive_user_low : int
+
+# High threshold in days for inactive users check
+inactive_user_high : int
+
+# Low threshold in days for password age check
+password_age_low : int
+
+# High threshold in days for password age check
+password_age_high : int
+
+# Low threshold in days for inactive key check
+inactive_key_low : int
+
+# High threshold in days for inactive key check
+inactive_key_high : int
+
+# Low threshold in days for key age check
+key_age_low : int
+
+# High threshold in days for key age check
+key_age_high : int
+
+# Email address to deliver to
+recipent_email_address : Email Address
+
+# Email address that is sent from 
+ses_source_email : Email Address
+
+# Name of the HTML Template we uploaded to S3
+ses_template_name : SES HTML Template Name
+
+# Region name where the HTML Template is located
+ses_region_name : AWS Region
+
+

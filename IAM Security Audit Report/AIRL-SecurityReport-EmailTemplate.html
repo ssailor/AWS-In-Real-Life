@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>IAM Security Audit Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body style="margin: 0; padding: 0;">
+    <!-- Body Table : Container that acts like the body for the html email-->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td>
+                <!-- Email Contents Table (Body Table) : Container for the actual email content -->
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border: 1px solid #cccccc;">
+                    <!-- Header Row (Email Contents Table) : Contains the section for the Header in the email contents table -->
+                    <tr>
+                        <td align="center" bgcolor="#70bbd9" style="padding: 20px 0 20px 0; color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                            <!-- Header Row : Contains the content of the header in the Header row of the Emails Contents Table -->
+                            <table>
+                                <!-- Header Text Row -->
+                                <tr>
+                                    <td>
+                                        <b>IAM Security Audit Report</b>
+                                    </td>
+                                </tr>
+                                <!-- Header Date Row -->
+                                <tr>
+                                    <td align="center">{{Date}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Content Row (Email Contents Table) : Section for the primary content of the email in the Email Contents Table-->
+                    <tr>
+                        <td bgcolor="#ffffff" style="padding: 20px 20px 20px 20px;">
+                            <!-- Contents Breakout Table (Content Row) : Table that allows for the breakout of content within the content section of the emails content table -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <!-- Header Title (Contents Breakout Table) : Top level header in the contents breakout table -->
+                                <tr>
+                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                                        <b>Access Levels</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        A breakdown of what ways a user can access AWS services
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- User Access Table -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>Access Levels</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Username</td>
+                                                            <td>Console</td>
+                                                            <td>Key 1</td>
+                                                            <td>Key 2</td>
+                                                        </tr>
+                                                        {{AccessTableRows}}
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!--Table Spacer Cell -->
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                                        <b>Password Policies</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        A listing of the current password policies
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Password Policies -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>Password Policies</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Policy</td>
+                                                            <td>Description</td>
+                                                            <td width="10%">Value</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Minimum Password Length</td>
+                                                            <td>Minimum acceptable password length</td>
+                                                            <td>{{password-policy-min-pass-length}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Require Symbols</td>
+                                                            <td>Require at least one non-alphanumeric character</td>
+                                                            <td>{{password-policy-require-symbols}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Require Numbers</td>
+                                                            <td>Require at least one number</td>
+                                                            <td>{{password-policy-require-numbers}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Require Uppercase Characters</td>
+                                                            <td>Require at least one uppercase letter</td>
+                                                            <td>{{password-policy-require-uppercase}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Require Lowercase Characters</td>
+                                                            <td>Require at least one lowercase letter</td>
+                                                            <td>{{password-policy-require-lowercase}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Allow Users To Change Password</td>
+                                                            <td>Allow users to change their own password</td>
+                                                            <td>{{password-policy-users-change-passwords}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Expire Passwords</td>
+                                                            <td>Passwords can expire</td>
+                                                            <td>{{password-policy-expire-passwords}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Max Password Age</td>
+                                                            <td>Time in days until password expires</td>
+                                                            <td>{{password-policy-password-age}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Password Reuse Prevention</td>
+                                                            <td>Number of previous passwords that cannot be reused</td>
+                                                            <td>{{password-policy-password-reuse}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Hard Expiry</td>
+                                                            <td>Password expiration requires administrator reset</td>
+                                                            <td>{{password-policy-hard-expire}}</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!--Table Spacer Cell -->
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                                        <b>Rules Threshold</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        A listing of all of the rules and their respective limits
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Rule Thresholds Table -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>Rule Thresholds</b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Rule</td>
+                                                            <td bgcolor="#4CA64C">Good</td>
+                                                            <td bgcolor="#ffff4c">Warning</td>
+                                                            <td bgcolor="#ff3232">Violation</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>MFA Enabled</td>
+                                                            <td>{{MFAGood}}</td>
+                                                            <td> - </td>
+                                                            <td>{{MFAViolation}}</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Inactive Users</td>
+                                                            <td>Less than {{InactiveUsersLow}} days</td>
+                                                            <td>Between {{InactiveUsersLow}} and {{InactiveUsersHigh}} days</td>
+                                                            <td>Greater than {{InactiveUsersHigh}} days</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Password Rotation</td>
+                                                            <td>Less than {{PasswordRotationLow}} days</td>
+                                                            <td>Between {{PasswordRotationLow}} and {{PasswordRotationHigh}} days</td>
+                                                            <td>Greater than {{PasswordRotationHigh}} days</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Inactive Keys</td>
+                                                            <td>Less than {{InactiveKeysLow}} days</td>
+                                                            <td>Between {{InactiveKeysLow}} and {{InactiveKeysHigh}} days</td>
+                                                            <td>Greater than {{InactiveKeysHigh}} days</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>Key Rotation</td>
+                                                            <td>Less than {{KeyRotationLow}} days</td>
+                                                            <td>Between {{KeyRotationLow}} and {{KeyRotationHigh}} days</td>
+                                                            <td>Greater than {{KeyRotationHigh}} days</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!--Table Spacer Cell -->
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
+                                        <b>Rules</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+                                        A listing of rules and users
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- MFA Check Table -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>MFA Enabled</b>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>Ensure that users have enable MFA upon login</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Status</td>
+                                                            <td>Username</td>
+                                                            <td>Recommendation</td>
+                                                        </tr>
+                                                        {{MFATableRows}}
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!--Table Spacer Cell -->
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Inactive user check -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>Inactive Users</b>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>Check how long it's been since a user has last checked into the AWS Console.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Status</td>
+                                                            <td>Username</td>
+                                                            <td>Recommendation</td>
+                                                        </tr>
+                                                        {{InactiveUsersTableRows}}
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!--Table Spacer Cell -->
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Password Rotation Table -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>Password Rotation</b>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>Determine if users have recently rotated their passwords</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Status</td>
+                                                            <td>Username</td>
+                                                            <td>Recommendation</td>
+                                                        </tr>
+                                                        {{PasswordRotationTableRows}}
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!--Table Spacer Cell -->
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Inactive keys Check -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>Inactive Keys</b>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>Determine if a user has keys that have not be used in a reasonable amount of time</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <!-- Table Header Row -->
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Status</td>
+                                                            <td>Username</td>
+                                                            <td>Key Name</td>
+                                                            <td>Recommendation</td>
+                                                        </tr>
+                                                        {{InactiveKeysTableRows}}
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!--Table Spacer Cell -->
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- Key Rotation Check -->
+                                        <table border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>
+                                                    <b>Key Rotation</b>
+                                                </td>
+                                            </tr>
+                                            <tr bgcolor="#ee4c50" align="center">
+                                                <td>Determine if users have active keys and if they need to rotate them</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="1" cellpadding="0" cellspacing="0" width="100%">
+                                                        <!-- Table Header Row -->
+                                                        <tr bgcolor="#C9C9C9" align="center" border="1">
+                                                            <td>Status</td>
+                                                            <td>Username</td>
+                                                            <td>Key Name</td>
+                                                            <td>Recommendation</td>
+                                                        </tr>
+                                                        {{KeyRotationTableRows}}
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Footer Row (Email Contents Table) : Footer section of the Email Contents Table-->
+                    <tr>
+                        <td bgcolor="#ffb732" style="padding: 20px 30px 20px 30px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td width="75%" style="color: #000000; font-family: Arial, sans-serif; font-size: 12px;">
+                                        Report generated by IAM Security Audit Bot
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
